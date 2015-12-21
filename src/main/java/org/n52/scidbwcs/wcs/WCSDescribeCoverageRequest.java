@@ -103,7 +103,7 @@ public class WCSDescribeCoverageRequest extends AbstractRequest {
      */
     @Override
     public boolean isValid() {
-        return request.equalsIgnoreCase("GetCapabilities") && service.equalsIgnoreCase("WCS") && isVersionSupported();
+        return request.equalsIgnoreCase("DescribeCoverage") && service.equalsIgnoreCase("WCS") && isVersionSupported();
         
     }
 
