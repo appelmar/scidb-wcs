@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.geotools.referencing.CRS;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -216,7 +217,7 @@ public class Array {
                 crs = CRS.parseWKT(srs().wkt);
             }
 
-            CoordinateReferenceSystem targetCRS = CRS.decode("EPSG:4326");
+            CoordinateReferenceSystem targetCRS = DefaultGeographicCRS.WGS84;
             MathTransform transform = CRS.findMathTransform(crs, targetCRS, true);
 
             double[] pts = {extent().xmin, extent().ymin, extent().xmin, extent().ymax, extent().xmax, extent().ymax, extent().xmax, extent().ymin};
@@ -240,7 +241,13 @@ public class Array {
                     ymax = pts[2 * i + 1];
                 }
             }
-            this.extentWGS84 = new Extent(xmin, xmax, ymin, ymax, null, null, null, null);
+            if (CRS.getAxisOrder(crs) != CRS.getAxisOrder(targetCRS)) {
+               this.extentWGS84 = new Extent(ymin, ymax, xmin, xmax, null, null, null, null);
+             
+            }
+            else {
+                this.extentWGS84 = new Extent(xmin, xmax, ymin, ymax, null, null, null, null);
+            }
             return this.extentWGS84;
 
         } catch (Exception ex) {
