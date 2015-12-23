@@ -111,7 +111,7 @@ public class WCSDescribeCoverageRequest extends AbstractRequest {
     @Override
     public void run(HttpServletResponse response) throws WCSException {
         try {
-            List<Array> arrayMD = ArrayManager.instance().getArrayMD(this.coverages);
+            List<Array> arrayMD = ArrayManager.instance().getArrayMD_JDBC(this.coverages);
             
             String WCSURI = "http://schemas.opengis.net/wcs/" + Constants.WCS_VERSION + "/describeCoverage.xsd";
             XMLOutputFactory factory = XMLOutputFactory.newInstance();

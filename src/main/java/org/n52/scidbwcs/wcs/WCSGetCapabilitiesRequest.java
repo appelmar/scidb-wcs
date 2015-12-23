@@ -272,7 +272,7 @@ public class WCSGetCapabilitiesRequest extends AbstractRequest {
 
             // Get all coverages
             //List<Array> arrayMD = Array.getArrayMDAll2();
-            List<Array> arrayMD = ArrayManager.instance().getArrayMD();
+            List<Array> arrayMD = ArrayManager.instance().getArrayMD_JDBC();
 
             
             ///////////////////////////////////////////////////////////////////////////////////////////////////

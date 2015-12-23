@@ -90,7 +90,7 @@ public class GDALWrapper {
         
         if (req.time != null && req.time.length > 0) {
             // Convert datetime to index (could be done automatically by GDAl as well)
-            Array A = ArrayManager.instance().getArrayMD(req.coverage);
+            Array A = ArrayManager.instance().getArrayMD_JDBC(req.coverage);
             Long tidx = A.trs().indexAtDatetime(DateTime.parse(req.time[0]));
             
             if (tidx < A.getTDim().getTrueMin() || tidx > A.getTDim().getTrueMax()) {

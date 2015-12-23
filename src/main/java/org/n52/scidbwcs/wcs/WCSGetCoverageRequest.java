@@ -140,7 +140,7 @@ public class WCSGetCoverageRequest extends AbstractRequest {
         if (kv.containsKey("TIME")) {
             String[] time = kv.getOrDefault("TIME", null).split(",");
             kv.remove("TIME");
-            if (!ArrayManager.instance().getArrayMD(req.coverage).isTemporal()) {
+            if (!ArrayManager.instance().getArrayMD_JDBC(req.coverage).isTemporal()) {
                 throw new WCSException("Array '" + req.coverage + "' has no temporal reference but TIME WCS parameter is given.", WCSException.WCS_EXCEPTION_CODE.InvalidParameterValue);
             }
             if (time.length > 1) {
